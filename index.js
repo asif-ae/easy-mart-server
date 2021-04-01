@@ -25,7 +25,7 @@ client.connect(err => {
   console.log('Connection error:', err);
   // Product Collections
   const productsCollection = client.db(dbName).collection(dbCollection);
-  console.log('Database Connected Successfully!', productsCollection);
+  console.log('Database Connected Successfully!');
   
   
 
@@ -79,7 +79,7 @@ client.connect(err => {
 
   // Order Collections
   const ordersCollection = client.db(dbName).collection(ocCollection);
-  console.log(ordersCollection);
+  // console.log(ordersCollection);
 
 
   // Order Collections Setup
@@ -94,7 +94,8 @@ client.connect(err => {
   })
 
   app.get('/orders', (req, res) => {
-    ordersCollection.find({})
+    // console.log(req.query.email);
+    ordersCollection.find({email: req.query.email})
     .toArray((err, documents) => {
       res.send(documents);
     })
