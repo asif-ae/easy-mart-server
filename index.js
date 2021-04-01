@@ -58,6 +58,19 @@ client.connect(err => {
     })
   })
 
+  app.patch('/update/:id', (req, res) => {
+    const id = ObjectID(req.params.id);
+    productCollection.updateOne(
+      {_id: id},
+      {
+        $set: {name: req.body.productName, weight: req.body.weight, price: req.body.addPrice}
+      }
+    )
+    .then(result => {
+      console.log('updated');
+    })
+  })
+
   // client.close();
 });
 
