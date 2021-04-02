@@ -26,8 +26,6 @@ client.connect(err => {
   // Product Collections
   const productsCollection = client.db(dbName).collection(dbCollection);
   console.log('Database Connected Successfully!');
-  
-  
 
   // Product Collections Setup
   app.get('/products', (req, res) => {
@@ -99,6 +97,11 @@ client.connect(err => {
     .toArray((err, documents) => {
       res.send(documents);
     })
+  })
+
+  // Root Path
+  app.get('/', (req, res) => {
+    res.send("Hello, Viewers! This URL from Heroku is available now!")
   })
 
   // client.close();
